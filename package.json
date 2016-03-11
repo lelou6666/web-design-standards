@@ -7,7 +7,7 @@
     "prepublish": "gulp build",
     "start": "gulp website:serve",
     "build": "gulp release",
-    "test": "gulp eslint scss-lint"
+    "test": "gulp fail-fast scss-lint ; gulp fail-fast eslint"
   },
   "repository": {
     "type": "git",
