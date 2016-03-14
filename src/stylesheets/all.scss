@@ -1,7 +1,7 @@
 // Vendor -------------- //
 
-@import 'lib/bourbon/bourbon';
-@import 'lib/neat/neat';
+@import 'lib/bourbon';
+@import 'lib/neat';
 @import 'lib/normalize';
 
 
@@ -9,6 +9,7 @@
 
 @import 'core/defaults';
 @import 'core/variables';
+@import 'core/fonts';
 @import 'core/base';
 @import 'core/grid-settings';
 @import 'core/grid';
