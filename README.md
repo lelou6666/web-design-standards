@@ -11,10 +11,9 @@ These tools follow industry-standard web accessibility guidelines and use the be
 We’re glad you’d like to use the Standards — here’s how you can get started:
 
 * Designers: Check out our Getting Started for Designers information [here](https://playbook.cio.gov/designstandards/getting-started/).
-    * Design files of all the assets included on this site are available for download [here](https://playbook.cio.gov/designstandards/designstandards/assets/releases/wds-design-assets.zip).
+    * Design files of all the assets included on this site are available for download [here](https://playbook.cio.gov/designstandards/assets/releases/wds-design-assets.zip).
 * Developers: Follow the instructions in this README to get started.
-    * CSS, JavaScript, image, and font files of all the assets on this site are available for download [here](https://github.com/18F/web-design-standards/archive/v0.8.3.zip).
-
+    * CSS, JavaScript, image, and font files of all the assets on this site are available for download [here](https://github.com/18F/web-design-standards/releases/download/v0.9.0/uswds-0.9.0.zip).
 
 Here are a few different ways to use the Standards within your project.
 
@@ -24,44 +23,95 @@ To use the Draft Web Design Standards on your project, you’ll need to include 
 
 First, download the Draft Web Design Standards assets:
 
-[https://github.com/18F/web-design-standards/archive/v0.8.3.zip](https://github.com/18F/web-design-standards/archive/v0.8.3.zip).
+[https://github.com/18F/web-design-standards/releases/download/v0.9.0/uswds-0.9.0.zip](https://github.com/18F/web-design-standards/releases/download/v0.9.0/uswds-0.9.0.zip)
 
 Then, add the `dist` directory files into a relevant place in your code base — likely a directory where you keep third-party libraries:
 
 ```
-- uswds
-  - fonts/
-  - img/
-  - js/
-  - css/
+uswds-0.9.0/
+├── js/
+│   ├── uswds.min.js.map
+│   ├── uswds.min.js
+│   └── uswds.js
+├── css/
+│   ├── uswds.min.css.map
+│   ├── uswds.min.css
+│   └── uswds.css
+├── img/
+└── fonts/
 ```
 
-Refer to these files by adding a `<link>` and a `<script>` element into your HTML pages:
+Refer to these files by adding the following `<link>` and `<script>` elements
+into your HTML pages:
 
+Add this to your `<head>` element:
+
+```html
+<link rel="stylesheet" href="/path/to/your/assets/css/lib/uswds.min.css">
 ```
-<link rel="stylesheet" href="/path/to/your/assets/css/main.css">
-<script src="/path/to/your/assets/js/components.js"></script>
+
+Add this before the closing `</body>` tag:
+
+```html
+<script src="/path/to/your/assets/js/lib/uswds.min.js"></script>
 ```
+
+We offer two versions — a minified version, and an un-minified one. Use the minified version in a production environment or to reduce the file size
+of your downloaded assets. And the un-minified version is better if you are in a
+development environment or would like to debug the CSS or JavaScript assets in
+the browser. The examples above recommend using the minified versions.
+
+This version of the Standards includes jQuery version `2.2.0` bundled within the
+JavaScript file. Please make sure that you're not including any other version
+of jQuery on your page.
 
 And that’s it — you should be set to use the Standards.
 
-## Using NPM
+## Using npm
 
-If you have `node` installed on your machine, you can use npm to install the Standards. Add `uswds` to your `package.json` as a dependency or a development dependency:
+If you have `node` installed on your machine, you can use npm to install the Standards. Add `uswds`
+to your projet's `package.json` as a dependency:
 
-`npm install --save[-dev] uswds`
+```shell
+npm install --save uswds
+```
 
-The package will be installed in `node_modules` under `uswds`, and the Sass stylesheets will be available for you to compile using your project’s asset pipeline. (You can also access a compiled version in the `dist/css/uswds.css`.)
+The package will be installed in `node_modules/uswds`. You can use the files
+found in the `src/` directory.
 
-Because both the source and compiled/bundled CSS are available to you, you may include the `uswds` package as either a `dependency` or a `devDependency`. For the JavaScript assets, we recommend using `browserify` to bundle your files as the assets are written using CommonJS.
+```
+node_modules/uswds/
+├── dist/
+│   ├── css/
+│   ├── fonts/
+│   ├── img/
+│   ├── js/
+└── src/
+    ├── fonts/
+    ├── img/
+    ├── js/
+    └── stylesheets/
+```
+
+`require('uswds')` will load all of the Draft U.S. Web Design Standard's JavaScript onto the page. The `uswds` module itself does not export anything.
+
+The main Sass (SCSS) source file is here:
+
+```
+node_modules/uswds/src/stylesheets/all.scss
+```
+
+The non-minified CSS that’s been precompiled is here:
+
+```
+node_modules/uswds/dist/css/uswds.css
+```
 
 ## Using another framework or package manager
 
-If you’re using another framework or package manager that doesn’t support NPM, you can find the source files in this repository and use them in your project. Otherwise, we recommend that you follow the [download instructions][link-to-downloads#above-section]. Please note that the core team [isn’t responsible for all frameworks’ implementations](https://github.com/18F/web-design-standards/issues/877).
+If you’re using another framework or package manager that doesn’t support NPM, you can find the source files in this repository and use them in your project. Otherwise, we recommend that you follow the [download instructions](#download). Please note that the core team [isn’t responsible for all frameworks’ implementations](https://github.com/18F/web-design-standards/issues/877).
 
-If you’re interested in maintaining a package that helps us distribute the Draft Web Design Standards, the project’s build system can help you create distribution bundles to use in your project. Please read our [contributing guidelines](link-to-contributing#gulp-section) to locally build distributions for your framework or package manager.
-
-If you’d like to use the Standards on a Ruby project, please use the [Ruby gem](https://github.com/18F/us_web_design_standards_gem).
+If you’re interested in maintaining a package that helps us distribute the Draft Web Design Standards, the project's build system can help you create distribution bundles to use in your project. Please read our [contributing guidelines](CONTRIBUTING.md#building-the-project-locally-with--gulp-) to locally build distributions for your framework or package manager.
 
 ## Need installation help?
 
